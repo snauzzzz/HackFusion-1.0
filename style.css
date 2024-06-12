@@ -479,11 +479,17 @@ footer p {
     width: 50px;
     height: 50px;
     pointer-events: none;
-    transition: opacity 1s ease-out;
 }
 
-.fade-out {
-    animation: fadeOut 1s forwards;
+.falling {
+    animation: fallingAnimation 3s ease-out; 
 }
 
-
+@keyframes fallingAnimation {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(500px) rotate(360deg); 
+    }
+}
