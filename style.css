@@ -493,3 +493,13 @@ footer p {
         transform: translateY(500px) rotate(360deg); 
     }
 }
+
+.air-quality-chart {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.chart-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}

@@ -1,3 +1,53 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const apiKey = '2f89654e869ea1daec003d4f15739a404dbe82b3'; 
+    const cities = ['New York', 'London', 'Tokyo', 'Beijing', 'Paris', 'Los Angeles', 'Berlin', 'Moscow', 'Seoul', 'Sydney'];
+    const airQualityData = [];
+
+    const fetchAQIData = async () => {
+        try {
+            for (const city of cities) {
+                const response = await fetch(`https://api.waqi.info/feed/${city}/?token=${apiKey}`);
+                const data = await response.json();
+
+                if (data.status === 'ok') {
+                    airQualityData.push({ city: city, aqi: data.data.aqi });
+                } else {
+                    console.error(`Error fetching data for ${city}: ${data.data}`);
+                }
+            }
+            renderChart();
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    const renderChart = () => {
+        const ctx = document.getElementById('myChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: airQualityData.map(item => item.city),
+                datasets: [{
+                    label: 'AQI',
+                    data: airQualityData.map(item => item.aqi),
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    };
+
+    fetchAQIData();
+});
+
 document.addEventListener('click', function(event) {
     // Check if the click is on the body or main content area
     if (event.target === event.currentTarget  || event.target.closest('main')) {
