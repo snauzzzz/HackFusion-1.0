@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    alert('Welcome! Click anywhere on the page to discover a surprise!');
     const apiKey = '2f89654e869ea1daec003d4f15739a404dbe82b3'; 
     const cities = ['New York', 'London', 'Tokyo', 'Beijing', 'Paris', 'Los Angeles', 'Berlin', 'Moscow', 'Seoul', 'Sydney'];
     const airQualityData = [];
